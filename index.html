@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Dot Matrix Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image to Dot Matrix Converter</h1>
+            <p>Upload an image to convert it into a dot matrix representation</p>
+        </header>
+
+        <div class="upload-section">
+            <label for="imageInput" class="upload-btn">
+                <span>📁 Choose Image</span>
+                <input type="file" id="imageInput" accept="image/*">
+            </label>
+            <span id="fileName" class="file-name">No file selected</span>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="dotSize">Dot Size: <span id="dotSizeValue">6</span>px</label>
+                <input type="range" id="dotSize" min="2" max="20" value="6">
+            </div>
+            <div class="control-group">
+                <label for="spacing">Spacing: <span id="spacingValue">8</span>px</label>
+                <input type="range" id="spacing" min="3" max="30" value="8">
+            </div>
+            <div class="control-group">
+                <label for="colorMode">Color Mode:</label>
+                <select id="colorMode">
+                    <option value="color">Full Color</option>
+                    <option value="grayscale">Grayscale</option>
+                    <option value="blackwhite" selected>Black & White</option>
+                    <option value="custom">Custom Color</option>
+                </select>
+            </div>
+            <div class="control-group" id="customColorGroup" style="display: none;">
+                <label for="customColor">Dot Color:</label>
+                <input type="color" id="customColor" value="#000000">
+            </div>
+            <div class="control-group">
+                <label for="bgColor">Background:</label>
+                <input type="color" id="bgColor" value="#000000">
+            </div>
+            <div class="control-group">
+                <label for="dotShape">Dot Shape:</label>
+                <select id="dotShape">
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                    <option value="diamond">Diamond</option>
+                </select>
+            </div>
+            <div class="control-group checkbox-group">
+                <input type="checkbox" id="sizeByBrightness" checked>
+                <label for="sizeByBrightness">Size by Brightness</label>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <div class="canvas-wrapper">
+                <h3>Original Image</h3>
+                <canvas id="originalCanvas"></canvas>
+            </div>
+            <div class="canvas-wrapper">
+                <h3>Dot Matrix Output</h3>
+                <canvas id="dotMatrixCanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="downloadBtn" class="action-btn" disabled>
+                ⬇️ Download Result
+            </button>
+            <button id="resetBtn" class="action-btn secondary">
+                🔄 Reset
+            </button>
+        </div>
+
+        <div class="embed-section" id="embedSection" style="display: none;">
+            <h3>📋 Embeddable Code</h3>
+            <div class="embed-tabs">
+                <button class="embed-tab active" data-format="svg">SVG</button>
+                <button class="embed-tab" data-format="html">HTML/CSS</button>
+                <button class="embed-tab" data-format="dataurl">Data URL</button>
+            </div>
+            <div class="code-container">
+                <button id="copyCodeBtn" class="copy-btn">📋 Copy Code</button>
+                <pre id="embedCode"><code></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="hiddenCanvas" style="display: none;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
